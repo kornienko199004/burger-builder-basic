@@ -13,15 +13,17 @@ class ContactData extends Component {
             postalCode: '',
         },
         loading: false,
+        price: null,
     };
 
     orderHandler = (event) => {
         event.preventDefault();
         console.log(this.props.ingredients);
         this.setState({ loading: true });
+        console.log(this.props.price);
         const order = {
             ingredients: this.props.ingredients,
-            price: this.props.totalPrice,
+            price: this.props.price,
             customer: {
                 name: 'Aleksey',
                 address: {

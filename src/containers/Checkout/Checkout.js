@@ -6,7 +6,7 @@ import ContactData from './ContactData/ContactData';
 class Checkout extends Component {
     state = {
         ingredients: null,
-        totalPrice: 0,
+        totalPrice: null,
     };
 
     componentDidMount() {
@@ -16,6 +16,7 @@ class Checkout extends Component {
         let price = 0;
         const query = new URLSearchParams(this.props.location.search);
         for (let param of query.entries()) {
+            console.log(param);
             if (param[0] === 'price') {
                 price = param[1];
             } else {
@@ -23,7 +24,9 @@ class Checkout extends Component {
             }
         }
         console.log(ingredients);
-        this.setState({ ingredients: ingredients, totalPrice: price });
+        console.log(price);
+        this.setState({ ingredients: ingredients });
+        this.setState({ totalPrice: price });
     }
 
     checkoutCancelledHandler = () => {
@@ -35,6 +38,8 @@ class Checkout extends Component {
     };
 
     render() {
+        
+        console.log(this.state.totalPrice);
         const component = (
             <div>
                 <CheckoutSummary
